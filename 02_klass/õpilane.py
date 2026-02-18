@@ -13,7 +13,6 @@ class Student:
     def average(self):
         if not self.grades:
             return None
-    
         total = 0
         for _, grade in self.grades:
             total += grade
