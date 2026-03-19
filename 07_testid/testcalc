@@ -1,0 +1,37 @@
+import unittest
+
+class Kalkulaator:
+    def __init__(self):
+        self.sisend = "0"
+    
+    def vajutus(self, nupp):
+        if self.sisend == "0":
+            self.sisend = nupp
+        else:
+            self.sisend += nupp
+        
+    def ekraan(self):
+        return self.sisend
+    
+
+class TestKalkulaator(unittest.TestCase):
+    def setUp(self):
+        self.k = Kalkulaator()
+
+    def test_algus(self):
+        self.assertEqual(self.k.ekraan(), "0")
+    
+    def test_vajutus_1(self):
+        self.k.vajutus("1")
+        self.assertEqual(self.k.ekraan(), "1")
+        
+    def test_vajutus_12(self):
+        self.k.vajutus("1")
+        self.k.vajutus("2")
+        self.assertEqual(self.k.ekraan(), "12")
+        
+
+suite = unittest.TestLoader().loadTestsFromTestCase(TestKalkulaator)
+runner = unittest.TextTestRunner(verbosity=0)
+result = runner.run(suite)
+print(f'Teste: {result.testsRun}')
